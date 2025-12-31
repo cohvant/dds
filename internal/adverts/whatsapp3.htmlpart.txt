@@ -1,0 +1,50 @@
+
+<!-- WhatsApp Advert 3 - Research Proposal -->
+<div style="font-family: 'Segoe UI', sans-serif; max-width: 430px; margin: 0 auto; background: linear-gradient(135deg, #134e4a 0%, #0f766e 50%, #14b8a6 100%); color: white; border-radius: 24px; padding: 2.25rem; box-shadow: 0 30px 60px rgba(19,78,74,0.6);">
+    <div style="background: rgba(255,255,255,0.12); backdrop-filter: blur(15px); padding: 1.75rem; border-radius: 20px; text-align: center; margin-bottom: 2rem; border: 2px solid rgba(255,255,255,0.2);">
+        <div style="font-size: 3rem; margin-bottom: 0.75rem;">📋</div>
+        <h2 style="font-size: 1.6rem; margin: 0; font-weight: 800;">RESEARCH PROPOSALS</h2>
+        <p style="font-size: 1rem; margin: 0.75rem 0 0 0; opacity: 0.95;">Get Your Proposal Approved!</p>
+    </div>
+    
+    <div style="background: rgba(255,255,255,0.08); backdrop-filter: blur(20px); border-radius: 18px; padding: 2rem; margin-bottom: 1.75rem;">
+        <div style="text-align: center; margin-bottom: 1.75rem;">
+            <div style="display: inline-block; background: rgba(20,184,166,0.25); padding: 1rem 2rem; border-radius: 50px; border: 2px solid #14b8a6;">
+                <h3 style="margin: 0; font-size: 1.5rem; font-weight: 800; color: #5eead4;">{employeeName}</h3>
+            </div>
+            <p style="margin: 0.75rem 0 0 0; font-size: 0.95rem; opacity: 0.9;">Research Methodology Expert</p>
+        </div>
+        
+        <div style="margin: 2rem 0;">
+            <div style="background: rgba(20,184,166,0.15); padding: 1.5rem; border-radius: 14px; margin-bottom: 1.25rem; border-left: 4px solid #14b8a6;">
+                <h4 style="margin: 0 0 0.75rem 0; color: #5eead4; font-size: 1.15rem; font-weight: 700;">🎯 Proposal Development</h4>
+                <p style="margin: 0; font-size: 1rem; line-height: 1.6;">Research questions • Objectives • Literature review • Methodology design</p>
+            </div>
+            
+            <div style="background: rgba(20,184,166,0.15); padding: 1.5rem; border-radius: 14px; margin-bottom: 1.25rem; border-left: 4px solid #14b8a6;">
+                <h4 style="margin: 0 0 0.75rem 0; color: #5eead4; font-size: 1.15rem; font-weight: 700;">📊 Statistical Planning</h4>
+                <p style="margin: 0; font-size: 1rem; line-height: 1.6;">Sample size calculation • Data collection methods • Analysis techniques</p>
+            </div>
+            
+            <div style="background: rgba(20,184,166,0.15); padding: 1.5rem; border-radius: 14px; border-left: 4px solid #14b8a6;">
+                <h4 style="margin: 0 0 0.75rem 0; color: #5eead4; font-size: 1.15rem; font-weight: 700;">✍️ Professional Writing</h4>
+                <p style="margin: 0; font-size: 1rem; line-height: 1.6;">Academic standards • Formatting • References • Ethics clearance</p>
+            </div>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, #fbbf24, #f59e0b); padding: 1.75rem; border-radius: 14px; text-align: center;">
+            <p style="font-size: 1.15rem; margin: 0; font-weight: 700; color: #78350f;">
+                ✅ Approval Guaranteed • Fast Turnaround
+            </p>
+        </div>
+    </div>
+    
+    <div style="background: rgba(255,255,255,0.15); padding: 1.5rem; border-radius: 16px; text-align: center;">
+        <p style="margin: 0; font-size: 1.05rem; font-weight: 700;">📧 {employeeEmail}</p>
+        <p style="margin: 0.75rem 0 0 0; font-size: 0.9rem; opacity: 0.9;">{dateHere}</p>
+    </div>
+    
+    <div style="text-align: center; margin-top: 1.75rem;">
+        <p style="font-size: 1rem; font-weight: 700; margin: 0;">💬 WhatsApp for FREE Sample Proposal!</p>
+    </div>
+</div>

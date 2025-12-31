@@ -1,0 +1,44 @@
+
+<!-- WhatsApp Advert 1 - Thesis Writing -->
+<div style="font-family: 'Segoe UI', sans-serif; max-width: 420px; margin: 0 auto; background: linear-gradient(135deg, #25d366 0%, #128c7e 50%, #075e54 100%); color: white; border-radius: 25px; padding: 2rem; box-shadow: 0 20px 50px rgba(37,211,102,0.4);">
+    <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 1.5rem; border-radius: 20px; text-align: center; margin-bottom: 1.5rem; border: 2px solid rgba(255,255,255,0.2);">
+        <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #fbbf24, #f59e0b); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem; box-shadow: 0 8px 20px rgba(251,191,36,0.4);">
+            📝
+        </div>
+        <h2 style="font-size: 1.5rem; margin: 0; font-weight: 700;">{employeeName}</h2>
+        <p style="font-size: 0.95rem; margin: 0.5rem 0 0 0; opacity: 0.9;">Academic Excellence Expert</p>
+    </div>
+    
+    <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(15px); padding: 1.5rem; border-radius: 18px; margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.3rem; margin: 0 0 1rem 0; text-align: center; font-weight: 700;">🎓 THESIS & RESEARCH PAPERS</h3>
+        
+        <div style="margin: 1.5rem 0;">
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 12px;">
+                <span style="font-size: 1.5rem;">✅</span>
+                <span style="font-size: 1rem; line-height: 1.5;"><strong>Plagiarism-Free</strong> Original Research</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 12px;">
+                <span style="font-size: 1.5rem;">⭐</span>
+                <span style="font-size: 1rem; line-height: 1.5;"><strong>High Grades</strong> Guaranteed</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 12px;">
+                <span style="font-size: 1.5rem;">⚡</span>
+                <span style="font-size: 1rem; line-height: 1.5;"><strong>Quick Turnaround</strong> On Time Delivery</span>
+            </div>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, #f59e0b, #d97706); padding: 1.25rem; border-radius: 12px; text-align: center; margin-top: 1.25rem;">
+            <p style="font-size: 1.05rem; margin: 0; font-weight: 600;">Masters • PhD • All Subjects 🎯</p>
+        </div>
+    </div>
+    
+    <div style="background: rgba(255,255,255,0.2); padding: 1.25rem; border-radius: 15px; text-align: center; margin-bottom: 1.25rem;">
+        <p style="margin: 0; font-size: 1.05rem; font-weight: 600;">📧 {employeePhoneNumber}</p>
+        <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem; opacity: 0.9;">{dateHere}</p>
+    </div>
+    
+    <div style="text-align: center;">
+        <p style="margin: 0; font-size: 1rem; font-weight: 700;">💬 WhatsApp NOW for FREE Quote!</p>
+    </div>
+</div>
+

@@ -1,0 +1,61 @@
+
+<!-- WhatsApp Advert 4 - Coding Help -->
+<div style="font-family: 'Segoe UI', sans-serif; max-width: 410px; margin: 0 auto; background: #1e1b4b; color: white; border-radius: 20px; padding: 2rem; box-shadow: 0 25px 55px rgba(30,27,75,0.7); position: relative; overflow: hidden;">
+    <div style="position: absolute; top: 0; right: 0; width: 100%; height: 100%; background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(139,92,246,0.05) 10px, rgba(139,92,246,0.05) 20px);"></div>
+    
+    <div style="text-align: center; margin-bottom: 2rem; position: relative; z-index: 1;">
+        <div style="display: inline-block; background: linear-gradient(135deg, #8b5cf6, #7c3aed); padding: 1.5rem 2rem; border-radius: 18px; box-shadow: 0 15px 40px rgba(139,92,246,0.4);">
+            <div style="font-size: 2.75rem; margin-bottom: 0.5rem;">💻</div>
+            <h2 style="font-size: 1.8rem; margin: 0; font-weight: 800;">CODING ASSIGNMENTS</h2>
+            <p style="font-size: 1rem; margin: 0.75rem 0 0 0; opacity: 0.95;">Expert Programming Help</p>
+        </div>
+    </div>
+    
+    <div style="background: rgba(139,92,246,0.12); backdrop-filter: blur(15px); padding: 2rem; border-radius: 18px; margin-bottom: 1.75rem; border: 1px solid rgba(139,92,246,0.3); position: relative; z-index: 1;">
+        <div style="text-align: center; margin-bottom: 1.75rem;">
+            <h3 style="margin: 0; font-size: 1.5rem; font-weight: 800; color: #a78bfa;">{employeeName}</h3>
+            <p style="margin: 0.5rem 0 0 0; font-size: 0.95rem; opacity: 0.9;">Software Engineer & Tutor</p>
+        </div>
+        
+        <div style="display: grid; gap: 1.25rem; margin: 2rem 0;">
+            <div style="background: rgba(139,92,246,0.15); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #8b5cf6;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <span style="font-size: 2rem; flex-shrink: 0;">🐍</span>
+                    <div>
+                        <h4 style="margin: 0; color: #a78bfa; font-weight: 700; font-size: 1.1rem;">Python, Java, C++</h4>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.95rem;">All programming languages</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: rgba(16,185,129,0.15); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #10b981;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <span style="font-size: 2rem; flex-shrink: 0;">🌐</span>
+                    <div>
+                        <h4 style="margin: 0; color: #34d399; font-weight: 700; font-size: 1.1rem;">Web Development</h4>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.95rem;">HTML, CSS, JavaScript, React</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: rgba(59,130,246,0.15); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #3b82f6;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <span style="font-size: 2rem; flex-shrink: 0;">🗄️</span>
+                    <div>
+                        <h4 style="margin: 0; color: #60a5fa; font-weight: 700; font-size: 1.1rem;">Database Projects</h4>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.95rem;">SQL, MongoDB, MySQL</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, #ec4899, #db2777); padding: 1.5rem; border-radius: 12px; text-align: center;">
+            <p style="font-size: 1.1rem; margin: 0; font-weight: 700;">🚀 Code + Explanation + Support</p>
+        </div>
+    </div>
+    
+    <div style="text-align: center; position: relative; z-index: 1;">
+        <p style="margin: 0 0 0.75rem 0; font-size: 1.05rem; font-weight: 700; background: rgba(139,92,246,0.2); padding: 1rem; border-radius: 12px;">📧 {employeeEmail}</p>
+        <p style="margin: 0; font-size: 0.85rem; opacity: 0.85;">{dateHere}</p>
+    </div>
+</div>

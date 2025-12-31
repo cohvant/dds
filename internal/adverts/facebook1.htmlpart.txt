@@ -1,0 +1,53 @@
+
+<!-- Facebook Advert 2 - Quick Assignment Help -->
+<div style="font-family: 'Segoe UI', sans-serif; max-width: 520px; margin: 0 auto; background: linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%); color: white; border-radius: 20px; padding: 2.25rem; box-shadow: 0 25px 50px rgba(5,150,105,0.5); position: relative; overflow: hidden;">
+    <div style="position: absolute; top: -40px; left: -40px; width: 180px; height: 180px; background: rgba(52,211,153,0.2); border-radius: 50%; filter: blur(50px);"></div>
+    
+    <div style="text-align: center; margin-bottom: 2rem; position: relative; z-index: 1;">
+        <div style="display: inline-block; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); padding: 1.5rem; border-radius: 20px; border: 2px solid rgba(255,255,255,0.3);">
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;">⚡</div>
+            <h1 style="font-size: 2.1rem; font-weight: 800; margin: 0;">URGENT ASSIGNMENTS</h1>
+            <p style="font-size: 1.1rem; margin: 0.75rem 0 0 0; font-weight: 600;">24-Hour Express Service</p>
+        </div>
+    </div>
+    
+    <div style="background: rgba(255,255,255,0.08); backdrop-filter: blur(20px); border-radius: 18px; padding: 2rem; position: relative; z-index: 1;">
+        <div style="text-align: center; margin-bottom: 1.75rem;">
+            <h2 style="font-size: 1.7rem; margin: 0; font-weight: 800; color: #fde047;">{employeeName}</h2>
+            <p style="font-size: 1rem; margin: 0.5rem 0 0 0; opacity: 0.95;">Assignment Rescue Specialist</p>
+        </div>
+        
+        <div style="background: rgba(253,224,71,0.15); padding: 1.75rem; border-radius: 14px; margin-bottom: 1.5rem; border: 2px dashed #fde047;">
+            <h3 style="font-size: 1.4rem; margin: 0 0 1.25rem 0; text-align: center; font-weight: 800; color: #fde047;">⏰ LAST-MINUTE HELP</h3>
+            <div style="display: grid; gap: 1rem;">
+                <div style="background: rgba(255,255,255,0.1); padding: 1.25rem; border-radius: 10px;">
+                    <p style="margin: 0; font-size: 1.05rem; font-weight: 600;">🎯 Essays & Reports - 24-48 hours</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 1.25rem; border-radius: 10px;">
+                    <p style="margin: 0; font-size: 1.05rem; font-weight: 600;">📊 Presentations & Case Studies</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 1.25rem; border-radius: 10px;">
+                    <p style="margin: 0; font-size: 1.05rem; font-weight: 600;">💻 Programming Projects & Code</p>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, #f59e0b, #d97706); padding: 1.75rem; border-radius: 14px; text-align: center; margin-bottom: 1.5rem;">
+            <p style="font-size: 1.15rem; margin: 0; font-weight: 700; line-height: 1.6;">
+                ✅ Quality Work • On-Time Delivery • Stress-Free Experience
+            </p>
+        </div>
+        
+        <div style="text-align: center; padding: 1.5rem; background: rgba(255,255,255,0.1); border-radius: 12px;">
+            <p style="margin: 0; font-size: 1.25rem; font-weight: 800; color: #fde047;">📧 {employeePhoneNumber}</p>
+            <p style="margin: 0.75rem 0 0 0; font-size: 0.95rem; opacity: 0.9;">{dateHere}</p>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 2rem; position: relative; z-index: 1;">
+        <p style="font-size: 1.1rem; font-weight: 700; margin: 0; background: rgba(255,255,255,0.15); padding: 1rem; border-radius: 12px;">
+            💬 Message NOW • Don't Wait • We'll Save Your Grade!
+        </p>
+    </div>
+
+</div>

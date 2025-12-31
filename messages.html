@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Droom Dazlean Message System</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+.container { max-width: 900px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+h1 { margin-bottom: 20px; color: #333; }
+.search-section { margin-bottom: 20px; }
+input, select, button { width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+button { background: #007bff; color: white; cursor: pointer; border: none; }
+button:hover { background: #0056b3; }
+.message-list { margin-top: 20px; }
+.message-item { padding: 15px; border: 1px solid #e0e0e0; border-radius: 4px; margin-bottom: 10px; cursor: pointer; transition: 0.2s; }
+.message-item:hover { background: #f8f9fa; border-color: #007bff; }
+.message-title { font-weight: bold; color: #007bff; margin-bottom: 5px; }
+.message-preview { color: #666; font-size: 13px; }
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; }
+.modal-content { background: white; margin: 50px auto; padding: 30px; max-width: 600px; border-radius: 8px; max-height: 80vh; overflow-y: auto; }
+.modal-header { margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #007bff; }
+.form-group { margin-bottom: 15px; }
+label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; }
+.btn-group { display: flex; gap: 10px; margin-top: 20px; }
+.btn-group button { flex: 1; }
+.btn-secondary { background: #6c757d; }
+.btn-secondary:hover { background: #5a6268; }
+.preview-box { background: #f8f9fa; padding: 15px; border-radius: 4px; margin-top: 20px; white-space: pre-wrap; font-size: 14px; line-height: 1.6; }
+.success-msg { background: #d4edda; color: #155724; padding: 10px; border-radius: 4px; margin-top: 10px; display: none; }
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1><i class="bi bi-envelope-fill"></i> Droom Dazlean Message System</h1>
+
+<div class="search-section">
+<input type="text" id="searchInput" placeholder="🔍 Search messages by content...">
+<select id="categoryFilter">
+<option value="">All Categories</option>
+<option value="Project Update">Project Update</option>
+<option value="Referral Program">Referral Program</option>
+<option value="Graduation Congratulations">Graduation Congratulations</option>
+<option value="Documentation Ready">Documentation Ready</option>
+<option value="Payment Reminder">Payment Reminder</option>
+<option value="Check-In Message">Check-In Message</option>
+<option value="Motivational">Motivational</option>
+<option value="Proverb/Wisdom">Proverb/Wisdom</option>
+<option value="Service Introduction">Service Introduction</option>
+<option value="Project Completion">Project Completion</option>
+<option value="Welcome Message">Welcome Message</option>
+<option value="Consultation Offer">Consultation Offer</option>
+<option value="Deadline Extension">Deadline Extension</option>
+<option value="Quality Assurance">Quality Assurance</option>
+<option value="Feedback Request">Feedback Request</option>
+<option value="Holiday Greetings">Holiday Greetings</option>
+<option value="Milestone Celebration">Milestone Celebration</option>
+<option value="Early Payment Incentive">Early Payment Incentive</option>
+<option value="Service Expansion">Service Expansion</option>
+<option value="Technical Support">Technical Support</option>
+<option value="Partnership Proposal">Partnership Proposal</option>
+<option value="Training Offer">Training Offer</option>
+<option value="Security Update">Security Update</option>
+<option value="Success Story">Success Story</option>
+<option value="Semester Start">Semester Start</option>
+<option value="Exam Period Support">Exam Period Support</option>
+<option value="Research Assistance">Research Assistance</option>
+<option value="Emergency Support">Emergency Support</option>
+<option value="Anniversary">Anniversary</option>
+<option value="Product Launch">Product Launch</option>
+<option value="Networking Event">Networking Event</option>
+<option value="Testimonial Request">Testimonial Request</option>
+<option value="Renewal Reminder">Renewal Reminder</option>
+<option value="Special Discount">Special Discount</option>
+<option value="Career Advice">Career Advice</option>
+</select>
+</div>
+
+<div class="message-list" id="messageList"></div>
+</div>
+
+<div class="modal" id="customizeModal">
+<div class="modal-content">
+<div class="modal-header">
+<h2 id="modalTitle">Customize Message</h2>
+</div>
+<div id="formFields"></div>
+<div class="preview-box" id="messagePreview"></div>
+<div class="success-msg" id="successMsg"><i class="bi bi-check-circle"></i> Message copied to clipboard!</div>
+<div class="btn-group">
+<button onclick="copyToClipboard()"><i class="bi bi-clipboard"></i> Copy to Clipboard</button>
+<button class="btn-secondary" onclick="closeModal()"><i class="bi bi-x-circle"></i> Close</button>
+</div>
+</div>
+</div>
+
+<script>
+const messages = [
+{
+category: "Project Update",
+title: "Project Progress Update",
+preview: "Professional update on project advancement...",
+fields: ["clientName", "projectName", "completionDate"],
+template: (d) => `Hello ${d.clientName} 👍,
+
+I hope this message finds you well.
+
+We are steadfastly advancing the project titled '${d.projectName}' with the utmost dedication, precision, and commitment. Every effort is being applied to ensure the final outcome reflects the excellence and value that your organization deserves.
+
+Our team is confident that the project will reach completion and be ready for presentation by ${d.completionDate}. This timeline has been thoughtfully established to allow for thorough finishing, testing, and quality assurance.
+
+We deeply appreciate the trust you have placed in us and remain fully focused on delivering a solution that not only meets the agreed objectives but also strengthens our partnership and supports your continued success.
+
+Thank you for your continued confidence. We look ahead with resolve and optimism to presenting a project that we all can take pride in.
+
+Wishing you a productive and positive day.
+
+Kind regards,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Referral Program",
+title: "Referral Rewards Program",
+preview: "Earn 10% on every referral...",
+fields: ["clientName"],
+template: (d) => `Hey ${d.clientName}! 💰
+
+We've got something exciting to share with you!
+
+🎁 EARN 10% ON EVERY REFERRAL! 🎁
+
+For every client or organization you refer to Droom Dazlean Solutions, you'll receive 10% of our total service charge as a thank you.
+
+How It Works:
+1️⃣ Think of businesses/friends who need IT solutions
+2️⃣ Connect them with us (+263 78 770 2386)
+3️⃣ When they become a client, you earn 10%
+4️⃣ No limit - refer as many as you want!
+
+💡 Example Earnings:
+• $10 project 👉 You earn $1
+• $100 project 👉 You earn $10
+• $1000 project 👉 You earn $100
+• $10 000 project 👉 You earn $1 000
+
+This is more than just rewards - it's our way of saying thank you for trusting us and helping us grow! 🙏
+
+Your recommendation carries weight because you've experienced our quality firsthand.
+
+Ready to start earning? Just send referrals our way! 🚀
+
+Best regards,
+The Droom Dazlean Team
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Graduation Congratulations",
+title: "Graduation Achievement Message",
+preview: "Celebrating academic milestone completion...",
+fields: ["studentName", "degree", "institution"],
+template: (d) => `Dear ${d.studentName}, 🎓
+
+Congratulations! Today marks a monumental achievement in your academic journey.
+
+Your ${d.degree} from ${d.institution} stands as a testament to your dedication, resilience, and intellectual capability. We at Droom Dazlean Solutions are genuinely honored to have played a part in supporting your success.
+
+From the initial research stages to the final dissertation defense, you demonstrated exceptional commitment. This accomplishment is entirely yours, and it opens doors to limitless possibilities.
+
+As you step into the next chapter, remember that excellence is a journey, not a destination. The skills you've developed, the knowledge you've gained, and the perseverance you've shown will serve you well in every endeavor ahead.
+
+We remain here as your professional partner, ready to support you in future research, career projects, or any technical challenges you may face. Your success is our success.
+
+Celebrate this victory. You've earned it! 🌟
+
+The future is exceptionally bright for you.
+
+With sincere congratulations,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Documentation Ready",
+title: "Project Documentation Handover",
+preview: "Final documentation ready for collection...",
+fields: ["clientName", "projectName", "documentCount"],
+template: (d) => `Hello ${d.clientName},
+
+Excellent news! Your documentation is ready.
+
+We are pleased to inform you that all ${d.documentCount} documents related to '${d.projectName}' have been finalized, reviewed, and are now ready for handover.
+
+Documentation includes:
+✓ Complete project files
+✓ Source code with documentation
+✓ User manuals and guides
+✓ Technical specifications
+✓ Testing reports
+
+Everything has been prepared with meticulous attention to detail, ensuring you have comprehensive materials for future reference and implementation.
+
+You may collect your documentation at your earliest convenience, or we can arrange secure digital delivery based on your preference.
+
+Should you require any clarification or additional support as you review the materials, Droom Dazlean Solutions remains readily available to assist you.
+
+Thank you for entrusting us with your project.
+
+Best regards,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Payment Reminder",
+title: "Outstanding Balance Notification",
+preview: "Gentle reminder about pending payment...",
+fields: ["clientName", "amount", "projectName", "dueDate"],
+template: (d) => `Dear ${d.clientName},
+
+I trust you are doing well.
+
+This is a courteous reminder regarding the outstanding balance of $${d.amount} for '${d.projectName}', which was due on ${d.dueDate}.
+
+We understand that oversights happen, and we genuinely appreciate your business. Settling this balance would be greatly appreciated and would allow us to continue providing you with exceptional service.
+
+Payment can be made via:
+• Bank Transfer
+• Mobile Money
+• Cash Collection
+
+If you have any questions about the invoice or would like to discuss payment arrangements, please don't hesitate to reach out. We're always willing to work with our valued clients.
+
+Your partnership with Droom Dazlean Solutions is important to us, and we look forward to continuing our successful collaboration.
+
+Thank you for your prompt attention to this matter.
+
+Warm regards,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Check-In Message",
+title: "Wellness Check-In",
+preview: "Friendly check on client wellbeing...",
+fields: ["clientName"],
+template: (d) => `Hello ${d.clientName},
+
+Just checking in! How are you doing?
+
+We wanted to reach out and see how things are progressing with you. Whether it's your studies, your business, or your personal projects, we hope everything is moving forward positively.
+
+At Droom Dazlean Solutions, we believe in building lasting relationships beyond just project completion. Your success and wellbeing matter to us.
+
+If you're facing any technical challenges, academic obstacles, or simply need professional guidance, remember that we're here for you. From dissertation support to full-scale software development, our team is ready to provide the expertise you need.
+
+Sometimes we all need a helping hand, and that's exactly what we're here to offer.
+
+Feel free to reach out anytime - even just to say hello!
+
+Take care and keep moving forward.
+
+Warmly,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Motivational",
+title: "Encouragement and Inspiration",
+preview: "Uplifting message to boost morale...",
+fields: ["recipientName"],
+template: (d) => `Hello ${d.recipientName},
+
+Today is YOUR day! 🌟
+
+The future isn't something that just happens - it's something you create, one decision at a time, one step at a time, one achievement at a time.
+
+Every challenge you face is shaping you into someone stronger, wiser, and more capable. Infact, let me tell you this ${d.recipientName}, the struggles you're experiencing today are building the success story you'll tell tomorrow.
+
+You have what it takes. The determination. The intelligence. The resilience.
+
+Never underestimate your potential. The world needs what you have to offer, and we believe in your ability to deliver it.
+
+At Droom Dazlean Solutions, we've seen countless individuals transform their aspirations into reality. We've witnessed the power of persistence, and we know that you possess that same power.
+
+Keep pushing forward. Keep believing. Keep achieving.
+
+The future is exceptionally bright for you, and we're honored to walk alongside you on this journey, providing professional support whenever you need it.
+
+You've got this! 💪
+
+With encouragement and support,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Proverb/Wisdom",
+title: "Wisdom and Reflection",
+preview: "Inspirational proverb with guidance...",
+fields: ["recipientName"],
+template: (d) => `Hello ${d.recipientName},
+
+"A journey of a thousand miles begins with a single step." - Lao Tzu
+
+This ancient wisdom holds profound truth, especially in academic and professional pursuits. Often, the most significant challenge isn't the complexity of the task itself - it's simply beginning.
+
+Whether you're starting a dissertation, launching a business, or developing a new system, that first step is what transforms dreams into reality. Procrastination and perfectionism can be paralyzing, but action creates momentum.
+
+At Droom Dazlean Solutions, we understand that starting can feel overwhelming. That's precisely why we exist - to make those crucial first steps easier, to provide expert guidance, and to walk with you through the entire journey.
+
+From PhD research to IoT implementations, from web development to AI solutions, we're here to transform your vision into tangible results.
+
+Don't wait for the perfect moment. The perfect moment is now.
+
+Take that first step, and let us provide the professional support that ensures your journey leads to success.
+
+Reflecting with you,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Service Introduction",
+title: "Comprehensive Services Overview",
+preview: "Introduction to full service portfolio...",
+fields: ["recipientName", "recipientType"],
+template: (d) => `Dear ${d.recipientName},
+
+Welcome to Droom Dazlean Solutions - Your Partner in Excellence! 🚀
+
+We specialize in providing comprehensive ${d.recipientType} with innovative solutions that drive success.
+
+🎓 For Students:
+• Professional dissertation writing
+• Project formulation & research
+• IoT & embedded systems
+• Programming (all levels up to PhD)
+• Data analysis & visualization
+
+💼 For Organizations:
+• Custom software development
+• Website design & development
+• IoT & AI implementations
+• Cybersecurity solutions
+• ICT consultancy & support
+• System integration
+
+What Sets Us Apart:
+✓ Expert team with proven track record
+✓ Deadline-focused delivery
+✓ Quality assurance at every stage
+✓ Ongoing support and maintenance
+✓ Competitive pricing
+
+We don't just complete projects - we build partnerships. When you work with Droom Dazlean Solutions, you gain a dedicated team committed to your success.
+
+Let's discuss how we can help you achieve your goals. Reach out today for a free consultation!
+
+Looking forward to working with you,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Project Completion",
+title: "Project Successful Delivery",
+preview: "Announcement of completed project...",
+fields: ["clientName", "projectName", "deliveryDate"],
+template: (d) => `Dear ${d.clientName},
+
+We are delighted to announce the successful completion of '${d.projectName}'! 🎉
+
+As of ${d.deliveryDate}, your project has been finalized, tested, and is ready for deployment. Every specification has been met, every requirement has been fulfilled, and every detail has been perfected.
+
+This achievement represents the culmination of collaborative effort, technical expertise, and unwavering commitment to excellence. We are genuinely proud of what we've accomplished together.
+
+Next Steps:
+• Final walkthrough and demonstration
+• Documentation handover
+• Training session (if required)
+• Ongoing support activation
+
+Your satisfaction is our priority, and we remain available to address any questions or provide additional support as you implement the solution.
+
+Thank you for choosing Droom Dazlean Solutions. It has been our privilege to serve you, and we look forward to future collaborations.
+
+Projects may end, but partnerships endure.
+
+With appreciation,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Welcome Message",
+title: "New Client Welcome",
+preview: "Warm welcome to new clients...",
+fields: ["clientName", "serviceType"],
+template: (d) => `Hello ${d.clientName}! 👋
+
+Welcome to the Droom Dazlean Solutions family!
+
+We are genuinely excited to begin working with you on your ${serviceType} needs. You've made an excellent decision, and we're committed to exceeding your expectations.
+
+From this moment forward, you have access to:
+✓ Dedicated project support
+✓ Expert technical guidance
+✓ Transparent communication
+✓ Quality-driven delivery
+✓ Flexible collaboration
+
+What to Expect:
+• Regular progress updates
+• Open communication channels
+• Professional consultations
+• Timely project delivery
+• Post-completion support
+
+We understand that trust is earned, not given, and we're committed to proving that your confidence in us is well-placed.
+
+Should you have any questions, concerns, or ideas at any point, please don't hesitate to reach out. We're here for you.
+
+Let's create something exceptional together!
+
+Warmly,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Consultation Offer",
+title: "Free Consultation Invitation",
+preview: "Offering complimentary expert consultation...",
+fields: ["recipientName", "consultationArea"],
+template: (d) => `Dear ${d.recipientName},
+
+We're offering you a complimentary expert consultation! ☕
+
+Navigating ${d.consultationArea} can be complex, and having the right guidance makes all the difference. That's why we'd like to offer you a free, no-obligation consultation session with our specialists.
+
+During this session, we'll:
+• Assess your specific needs
+• Discuss potential solutions
+• Provide expert recommendations
+• Answer all your questions
+• Outline a clear path forward
+
+No pressure, no sales tactics - just honest, professional advice from people who genuinely want to help you succeed.
+
+Whether you're exploring options or ready to commit, this consultation will provide valuable insights that can inform your decisions.
+
+This offer is available for a limited time, so schedule your session today!
+
+Investment in knowledge always pays the best dividends.
+
+Looking forward to speaking with you,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Deadline Extension",
+title: "Deadline Adjustment Notice",
+preview: "Information about revised timeline...",
+fields: ["clientName", "projectName", "newDeadline", "reason"],
+template: (d) => `Dear ${d.clientName},
+
+We appreciate your understanding regarding '${d.projectName}'.
+
+After careful consideration and quality assessment, we have adjusted the completion timeline to ${d.newDeadline}. This extension is due to ${d.reason}, and it ensures that we deliver a solution that truly meets the exceptional standards you deserve.
+
+At Droom Dazlean Solutions, we never compromise on quality. While timely delivery is important, delivering excellence is paramount. This additional time allows us to:
+• Conduct thorough testing
+• Implement refinements
+• Ensure optimal performance
+• Verify all specifications
+
+We understand that timeline changes can be inconvenient, and we sincerely appreciate your patience and flexibility. The final product will reflect the value of this additional attention to detail.
+
+Rest assured, our team remains fully committed and actively engaged. You'll continue to receive regular updates as we progress toward completion.
+
+Thank you for your continued trust in our process and expertise.
+
+With commitment,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Quality Assurance",
+title: "Quality Assurance Update",
+preview: "Information about quality measures...",
+fields: ["clientName", "projectName"],
+template: (d) => `Hello ${d.clientName},
+
+Quality Update: '${d.projectName}' 🔍
+
+We wanted to provide you with insight into the rigorous quality assurance process your project is currently undergoing.
+
+Our QA Protocol includes:
+✓ Functionality testing across all features
+✓ Performance optimization
+✓ Security vulnerability assessment
+✓ User experience evaluation
+✓ Cross-platform compatibility checks
+✓ Code review and refinement
+
+At Droom Dazlean Solutions, quality isn't just a buzzword - it's a commitment embedded in every phase of development. We test extensively, identify potential issues proactively, and resolve them before delivery.
+
+This thorough approach ensures that what you receive isn't just functional - it's exceptional.
+
+Your project is in the final stages of this comprehensive QA process, and we're confident that the results will exceed your expectations.
+
+Quality takes time, but it's an investment that pays dividends in reliability, performance, and user satisfaction.
+
+Thank you for your patience as we perfect your solution.
+
+With dedication to excellence,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Feedback Request",
+title: "Client Experience Feedback",
+preview: "Requesting feedback on services...",
+fields: ["clientName", "projectName"],
+template: (d) => `Dear ${d.clientName},
+
+Your feedback matters to us! 💬
+
+Now that '${d.projectName}' has been completed and delivered, we would greatly appreciate hearing about your experience working with Droom Dazlean Solutions.
+
+We'd love to know:
+• How satisfied are you with the final deliverable?
+• Was our communication clear and timely?
+• Did we meet your expectations?
+• What could we improve?
+• Would you recommend us to others?
+
+Your honest feedback helps us continuously improve our services and ensure that every client receives exceptional value.
+
+As a token of appreciation for taking the time to share your thoughts, clients who provide feedback receive priority scheduling on future projects and exclusive access to special offers.
+
+You can respond directly to this message or schedule a quick feedback call at your convenience.
+
+Thank you for choosing Droom Dazlean Solutions. Your success is our success, and your insights help us serve you better.
+
+Looking forward to hearing from you,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Holiday Greetings",
+title: "Seasonal Greetings Message",
+preview: "Holiday wishes with continued support...",
+fields: ["clientName", "holiday"],
+template: (d) => `Dear ${d.clientName},
+
+Warm ${d.holiday} Greetings! 🎊
+
+As we celebrate this special season, we wanted to take a moment to express our sincere gratitude for your trust and partnership throughout the year.
+
+Working with you has been genuinely rewarding, and we're honored to have played a role in your success. Your goals, challenges, and achievements have inspired us to continually strive for excellence.
+
+As you enjoy this festive period with family and friends, we hope you find time to reflect on your accomplishments and recharge for the exciting opportunities ahead.
+
+Looking forward to 2026, Droom Dazlean Solutions remains committed to providing you with innovative solutions, expert guidance, and unwavering support for all your technical and academic needs.
+
+May this ${d.holiday} bring you joy, peace, and renewed inspiration.
+
+Here's to continued partnership and shared success in the coming year!
+
+With warm wishes,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Milestone Celebration",
+title: "Partnership Milestone Recognition",
+preview: "Celebrating significant achievements...",
+fields: ["clientName", "milestone", "projectCount"],
+template: (d) => `Dear ${d.clientName},
+
+Celebrating a Special Milestone! 🎉
+
+Today marks a significant achievement: ${d.milestone}!
+
+We've now successfully completed ${d.projectCount} projects together, and each one has strengthened our partnership and demonstrated the power of collaboration.
+
+This milestone represents more than just numbers - it reflects:
+• Trust built over time
+• Challenges overcome together
+• Goals achieved collaboratively
+• A relationship that continues to grow
+
+At Droom Dazlean Solutions, we measure success not just in delivered projects, but in lasting relationships and mutual growth. You've been an integral part of our journey, and we're genuinely grateful for your continued confidence.
+
+As we celebrate this achievement, we're already looking forward to the next chapter of our partnership. Whatever challenges or opportunities lie ahead, we're ready to face them together with the same dedication and excellence that brought us here.
+
+Thank you for being an exceptional client and partner.
+
+Here's to many more milestones together! 🥂
+
+With appreciation,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Early Payment Incentive",
+title: "Early Settlement Discount Offer",
+preview: "Special discount for prompt payment...",
+fields: ["clientName", "amount", "discount", "deadline"],
+template: (d) => `Hello ${d.clientName},
+
+Special Early Payment Opportunity! 💰
+
+We have an exclusive offer for you regarding your current balance of $${d.amount}.
+
+If you settle your account by ${d.deadline}, we'll apply a ${d.discount}% courtesy discount - our way of saying thank you for your promptness and partnership!
+
+Your discounted amount: $${(d.amount * (1 - d.discount/100)).toFixed(2)}
+You save: $${(d.amount * d.discount/100).toFixed(2)}
+
+Benefits of early settlement:
+✓ Immediate cost savings
+✓ Priority scheduling on future projects
+✓ Simplified accounting
+✓ Strengthened partnership
+
+This offer reflects our appreciation for clients who value efficient business relationships. At Droom Dazlean Solutions, we believe in rewarding proactive partners.
+
+Payment methods:
+• Bank Transfer
+• Mobile Money
+• Cash Collection
+
+To take advantage of this offer, simply make payment by the deadline and mention this message.
+
+We appreciate your business and look forward to continuing our successful collaboration!
+
+Best regards,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Service Expansion",
+title: "New Services Announcement",
+preview: "Introducing expanded capabilities...",
+fields: ["clientName", "newService"],
+template: (d) => `Dear ${d.clientName},
+
+Exciting News - We've Expanded! 🚀
+
+Droom Dazlean Solutions is thrilled to announce the addition of ${d.newService} to our comprehensive service portfolio!
+
+This expansion means we can now serve you even better, providing integrated solutions that address more of your technical and business needs under one roof.
+
+Why this matters to you:
+• More comprehensive solutions
+• Single point of contact
+• Seamless service integration
+• Enhanced project efficiency
+• Expanded expertise available
+
+Whether you're planning new projects or looking to enhance existing systems, our expanded capabilities position us to deliver even greater value.
+
+We'd love to discuss how these new services could benefit your specific needs. Let's schedule a conversation to explore the possibilities!
+
+As always, your success drives our innovation, and we're committed to evolving our services to meet your changing needs.
+
+Exciting times ahead!
+
+With enthusiasm,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Technical Support",
+title: "Ongoing Support Availability",
+preview: "Technical assistance and support offer...",
+fields: ["clientName", "systemName"],
+template: (d) => `Hello ${d.clientName},
+
+Your Technical Support Partner 🛠️
+
+We're reaching out to remind you that comprehensive technical support for '${d.systemName}' remains available whenever you need it.
+
+At Droom Dazlean Solutions, our commitment doesn't end at project delivery. We understand that technology evolves, requirements change, and occasional challenges arise - and we're here for all of it.
+
+Support Services Available:
+✓ Bug fixes and troubleshooting
+✓ Performance optimization
+✓ Feature enhancements
+✓ System updates
+✓ User training
+✓ Technical consultation
+
+Whether you're experiencing issues, considering upgrades, or simply have questions about optimal usage, our team is ready to assist promptly and professionally.
+
+Response Times:
+• Critical issues: Within 4 hours
+• Standard support: Within 24 hours
+• General inquiries: Within 48 hours
+
+Don't hesitate to reach out. Your smooth operations are our priority.
+
+Always here to help,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Partnership Proposal",
+title: "Strategic Partnership Invitation",
+preview: "Proposal for long-term collaboration...",
+fields: ["organizationName", "contactPerson"],
+template: (d) => `Dear ${d.contactPerson},
+
+Strategic Partnership Opportunity for ${d.organizationName} 🤝
+
+At Droom Dazlean Solutions, we believe that exceptional partnerships create exceptional outcomes. We've been following ${d.organizationName}'s growth and achievements, and we see tremendous potential for strategic collaboration.
+
+Partnership Benefits:
+• Preferential pricing on all services
+• Priority project scheduling
+• Dedicated account management
+• Quarterly strategic reviews
+• Customized support packages
+• Joint innovation initiatives
+
+Our Commitment:
+We don't just provide services - we become an extension of your team, invested in your success and aligned with your goals.
+
+Potential Collaboration Areas:
+✓ Digital transformation initiatives
+✓ Custom software development
+✓ ICT infrastructure optimization
+✓ Cybersecurity implementation
+✓ AI and IoT integration
+✓ Ongoing technical consultancy
+
+Let's schedule a meeting to explore how a formal partnership could drive mutual growth and create lasting value.
+
+Together, we can achieve more.
+
+Looking forward to the conversation,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Training Offer",
+title: "Professional Training Program",
+preview: "Skills development and training offer...",
+fields: ["recipientName", "trainingTopic"],
+template: (d) => `Hello ${d.recipientName},
+
+Enhance Your Skills with Professional Training! 📚
+
+Droom Dazlean Solutions is offering specialized training in ${d.trainingTopic}, designed to empower you with practical, industry-relevant skills.
+
+Training Highlights:
+• Hands-on practical sessions
+• Real-world case studies
+• Expert instructors
+• Certification upon completion
+• Ongoing mentorship available
+• Flexible scheduling options
+
+Why Train With Us:
+At Droom Dazlean Solutions, we don't just teach theory - we share practical expertise gained from years of successful project implementation. Our training equips you with skills that make immediate impact.
+
+Who Should Attend:
+• Professionals seeking skill enhancement
+• Students preparing for careers
+• Teams requiring upskilling
+• Anyone committed to growth
+
+Investment in education is investment in your future. Let's discuss how this training can accelerate your professional development.
+
+Early registration discounts available!
+
+Empowering your growth,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Security Update",
+title: "Security Enhancement Notice",
+preview: "Important security measures update...",
+fields: ["clientName", "systemName"],
+template: (d) => `Dear ${d.clientName},
+
+Important Security Update for '${d.systemName}' 🔒
+
+Your security is our priority. We've identified opportunities to enhance the security posture of your system and wanted to inform you of recommended updates.
+
+Recommended Enhancements:
+• Latest security patches
+• Authentication strengthening
+• Data encryption upgrades
+• Access control optimization
+• Vulnerability remediation
+
+Why This Matters:
+In today's digital landscape, proactive security maintenance isn't optional - it's essential. These updates protect your data, ensure compliance, and maintain system integrity.
+
+At Droom Dazlean Solutions, we continuously monitor security landscapes and best practices, ensuring our clients benefit from the latest protective measures.
+
+Next Steps:
+We can schedule these updates during off-peak hours to minimize any operational impact. The process is straightforward, and we'll handle everything professionally.
+
+Let's discuss implementation timing that works best for your operations.
+
+Protecting your digital assets,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Success Story",
+title: "Client Success Showcase",
+preview: "Celebrating and sharing achievements...",
+fields: ["clientName", "achievement"],
+template: (d) => `Dear ${d.clientName},
+
+Your Success Story Inspires Us! ⭐
+
+We wanted to take a moment to celebrate your incredible achievement: ${d.achievement}!
+
+This success represents the power of vision combined with the right support. While the credit is entirely yours, we're honored to have contributed to your journey.
+
+What made this success possible:
+• Your clear vision and commitment
+• Collaborative partnership
+• Strategic implementation
+• Persistent dedication
+• Professional execution
+
+At Droom Dazlean Solutions, we measure our success by our clients' achievements. Your wins are our wins, and this accomplishment reinforces why we're passionate about what we do.
+
+With your permission, we'd love to feature your success story (anonymously if you prefer) to inspire others who are pursuing similar goals. Your journey could motivate someone else to take that crucial first step.
+
+Thank you for allowing us to be part of your success story. We look forward to celebrating many more milestones together!
+
+Proudly celebrating with you,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Semester Start",
+title: "New Semester Support Message",
+preview: "Beginning of semester encouragement...",
+fields: ["studentName", "semester"],
+template: (d) => `Hello ${d.studentName}!
+
+Welcome to ${d.semester}! 🎓
+
+A new semester means fresh opportunities, new challenges, and another step toward your academic goals. We wanted to reach out and let you know that Droom Dazlean Solutions is here to support you every step of the way.
+
+This Semester We Offer:
+• Dissertation and project assistance
+• Programming support (all languages)
+• Research methodology guidance
+• Data analysis services
+• IoT project implementation
+• Technical documentation
+
+Starting Strong:
+The beginning of a semester sets the tone for everything that follows. Don't wait until deadlines loom - proactive planning and early support lead to better outcomes and less stress.
+
+Whether you need help with complex algorithms, research design, or technical implementations, our expert team is ready to provide professional assistance that enhances your learning and ensures your success.
+
+Special Student Support:
+• Flexible payment options
+• Priority scheduling
+• Ongoing consultation
+• Quality guarantees
+
+Let's make this your best semester yet! Reach out anytime you need support.
+
+Here for your academic success,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Exam Period Support",
+title: "Exam Season Assistance",
+preview: "Support during examination period...",
+fields: ["studentName"],
+template: (d) => `Dear ${d.studentName},
+
+Exam Season Support Available! 📖
+
+We know this is an intense period, and we wanted to remind you that Droom Dazlean Solutions is here to help you navigate exam season successfully.
+
+How We Can Help:
+• Last-minute project assistance
+• Code debugging and optimization
+• Technical report finalization
+• Data analysis completion
+• Presentation preparation
+• Documentation support
+
+We understand the pressure of deadlines converging during exam periods. Our team is prepared to provide efficient, high-quality support that helps you meet requirements without compromising on excellence.
+
+Quick Turnaround Available:
+For urgent needs, we offer expedited services to ensure you can submit confidently and on time.
+
+Managing Stress:
+Remember to balance work with rest. Quality sleep, proper nutrition, and brief breaks actually improve performance. You've got this!
+
+At Droom Dazlean Solutions, your academic success matters to us. Don't struggle alone when professional help is just a message away.
+
+Reach out anytime - we're ready to help you succeed.
+
+Supporting your excellence,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Research Assistance",
+title: "Research Project Support",
+preview: "Comprehensive research assistance offer...",
+fields: ["studentName", "researchArea"],
+template: (d) => `Hello ${d.studentName},
+
+Expert Research Support for ${d.researchArea} 🔬
+
+Conducting meaningful research requires more than just effort - it requires methodology, expertise, and proper guidance. Droom Dazlean Solutions specializes in providing comprehensive research support at all academic levels, including PhD.
+
+Our Research Services:
+✓ Topic formulation and refinement
+✓ Literature review assistance
+✓ Methodology design
+✓ Data collection strategies
+✓ Statistical analysis (SPSS, R, Python)
+✓ Results interpretation
+✓ Academic writing support
+✓ Citation and formatting
+
+Why Our Support Matters:
+Research can be overwhelming, especially when navigating complex methodologies or analyzing large datasets. Our experts have guided countless students to successful completions, and we understand exactly what examiners expect.
+
+We don't just help you finish - we help you excel.
+
+Quality Standards:
+• Plagiarism-free original work
+• Proper academic formatting
+• Rigorous analysis
+• Clear, coherent writing
+• Deadline adherence
+
+Your research deserves professional support. Let's discuss how we can help you produce work you're genuinely proud of.
+
+Advancing knowledge together,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Emergency Support",
+title: "Urgent Assistance Available",
+preview: "Fast response for critical situations...",
+fields: ["clientName", "urgentNeed"],
+template: (d) => `${d.clientName} - URGENT SUPPORT AVAILABLE ⚡
+
+We understand you're facing an urgent situation with ${d.urgentNeed}.
+
+At Droom Dazlean Solutions, we recognize that technical and academic emergencies don't follow convenient schedules. That's why we maintain emergency response capacity for critical situations.
+
+Immediate Actions:
+1. Our team is being mobilized now
+2. Priority resources allocated
+3. Expedited timeline activated
+4. Quality maintained despite urgency
+
+What You Can Expect:
+• Rapid initial response
+• Clear action plan
+• Regular progress updates
+• Professional execution under pressure
+• Successful resolution
+
+We've handled countless emergency situations successfully. Whether it's a last-minute system failure, approaching deadline, or unexpected complication, we have the expertise and commitment to help you through this.
+
+Don't panic - you've reached the right people.
+
+Contact us immediately via call or WhatsApp for fastest response. We're standing by.
+
+Ready to help RIGHT NOW,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Anniversary",
+title: "Partnership Anniversary",
+preview: "Celebrating years of collaboration...",
+fields: ["clientName", "years"],
+template: (d) => `Dear ${d.clientName},
+
+Happy ${d.years}-Year Partnership Anniversary! 🎊
+
+Today marks ${d.years} years since we began working together, and we wanted to take this special moment to express our sincere gratitude for your continued trust and partnership.
+
+Reflecting on Our Journey:
+Over these ${d.years} years, we've shared challenges and celebrated successes. We've grown together, learned from each other, and built something genuinely valuable - a relationship based on mutual respect and shared commitment to excellence.
+
+What ${d.years} Years Represents:
+• Countless successful projects
+• Problems solved collaboratively
+• Trust built through consistency
+• A partnership that endures
+
+At Droom Dazlean Solutions, we don't take long-term relationships for granted. Each year you continue choosing us is both an honor and a responsibility we embrace wholeheartedly.
+
+Looking Forward:
+As we celebrate this milestone, we're already excited about the future. Whatever challenges or opportunities the next chapter brings, we're committed to facing them together with the same dedication that brought us here.
+
+Thank you for ${d.years} extraordinary years. Here's to many more! 🥂
+
+With deep appreciation,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Product Launch",
+title: "New Solution Launch",
+preview: "Announcing innovative new offering...",
+fields: ["productName", "productDescription"],
+template: (d) => `Exciting Launch Announcement! 🚀
+
+Introducing ${d.productName}!
+
+Droom Dazlean Solutions is thrilled to unveil our latest innovation: ${d.productDescription}.
+
+This solution addresses real-world challenges we've identified through years of working with clients like you. It represents our commitment to continuous innovation and delivering practical value.
+
+Key Features:
+✓ Cutting-edge technology
+✓ User-friendly interface
+✓ Scalable architecture
+✓ Robust security
+✓ Comprehensive support
+
+Why This Matters:
+${d.productName} solves problems efficiently, saving you time and resources while delivering superior results. We've tested extensively and refined meticulously to ensure it meets the highest standards.
+
+Special Launch Offer:
+Early adopters receive preferential pricing and extended support packages. This is your opportunity to benefit from innovation while enjoying exceptional value.
+
+We'd love to demonstrate how ${d.productName} can benefit your specific needs. Let's schedule a personalized walkthrough!
+
+Innovation serving excellence,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Networking Event",
+title: "Industry Event Invitation",
+preview: "Invitation to professional gathering...",
+fields: ["recipientName", "eventName", "eventDate", "eventLocation"],
+template: (d) => `Dear ${d.recipientName},
+
+You're Invited! 🎯
+
+Droom Dazlean Solutions is hosting ${d.eventName} on ${d.eventDate} at ${d.eventLocation}, and we would be delighted to have you join us.
+
+Event Highlights:
+• Industry expert presentations
+• Technology demonstrations
+• Networking opportunities
+• Interactive workshops
+• Refreshments and entertainment
+
+Why Attend:
+This event brings together professionals, innovators, and leaders for meaningful conversations about technology, education, and business advancement. It's an opportunity to learn, connect, and explore new possibilities.
+
+Who Will Be There:
+• Technology professionals
+• Academic leaders
+• Business executives
+• Innovation enthusiasts
+• Solution providers
+
+At Droom Dazlean Solutions, we believe in building community, not just client lists. This event reflects our commitment to fostering connections that create value beyond individual transactions.
+
+Space is limited, so please confirm your attendance at your earliest convenience.
+
+We look forward to welcoming you!
+
+Best regards,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Testimonial Request",
+title: "Review and Testimonial Request",
+preview: "Requesting client testimonial...",
+fields: ["clientName", "projectName"],
+template: (d) => `Dear ${d.clientName},
+
+Would You Share Your Experience? ⭐
+
+Your satisfaction with '${d.projectName}' means the world to us, and we would be incredibly grateful if you'd consider sharing your experience through a brief testimonial.
+
+What We're Looking For:
+• Your overall experience working with us
+• The results you achieved
+• What stood out about our service
+• Whether you'd recommend us
+
+Why Testimonials Matter:
+Your honest feedback helps prospective clients understand what it's like to work with Droom Dazlean Solutions. Your words carry more weight than any marketing message we could create.
+
+How to Share:
+Simply reply to this message with your thoughts, or we can schedule a quick call to gather your feedback verbally. We'll handle the rest.
+
+As a token of appreciation, clients who provide testimonials receive:
+• 15% discount on their next project
+• Priority scheduling
+• Extended support benefits
+
+Your success story could inspire someone else to take the first step toward their goals.
+
+Thank you for considering this request!
+
+With gratitude,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Renewal Reminder",
+title: "Service Renewal Notification",
+preview: "Upcoming renewal reminder...",
+fields: ["clientName", "serviceName", "renewalDate"],
+template: (d) => `Hello ${d.clientName},
+
+Service Renewal Reminder 🔄
+
+Your ${d.serviceName} subscription is scheduled for renewal on ${d.renewalDate}, and we wanted to reach out to ensure uninterrupted service.
+
+Current Benefits:
+• Ongoing technical support
+• Regular system updates
+• Priority response times
+• Security monitoring
+• Performance optimization
+
+Renewal Process:
+We've made renewal simple and straightforward. You can confirm continuation, adjust your package, or discuss any changes to your needs.
+
+Why Continue:
+Consistent support ensures your systems remain secure, current, and operating optimally. Droom Dazlean Solutions provides peace of mind through proactive maintenance and expert availability.
+
+Special Renewal Offer:
+Annual renewals receive 10% discount compared to monthly rates, plus enhanced support benefits.
+
+Let's discuss your renewal and ensure your coverage continues seamlessly. We're also happy to review your current package and recommend optimizations based on your evolving needs.
+
+Looking forward to another successful year together!
+
+Your continued success partner,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Special Discount",
+title: "Exclusive Discount Offer",
+preview: "Limited-time special pricing...",
+fields: ["clientName", "discountPercentage", "validUntil", "serviceCategory"],
+template: (d) => `Hey ${d.clientName}! 🎁
+
+Exclusive ${d.discountPercentage}% Discount Just for You!
+
+As a valued member of the Droom Dazlean Solutions community, you're receiving exclusive access to special pricing on ${d.serviceCategory}.
+
+Offer Details:
+• ${d.discountPercentage}% off standard rates
+• Valid until ${d.validUntil}
+• Applies to new projects
+• Can be combined with referral rewards
+
+Why This Offer:
+We appreciate loyal clients like you, and this discount is our way of saying thank you while making our premium services even more accessible.
+
+Services Included:
+✓ All ${d.serviceCategory} solutions
+✓ Custom implementations
+✓ Full support packages
+✓ Quality guarantees
+
+This is a limited-time opportunity to maximize value while receiving the same exceptional quality you've come to expect from us.
+
+How to Redeem:
+Simply mention this offer when discussing your next project. No complicated codes or fine print - just straightforward savings.
+
+Have a project in mind? Now's the perfect time to move forward!
+
+Exclusive opportunity waiting,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+},
+{
+category: "Career Advice",
+title: "Professional Development Guidance",
+preview: "Career advancement insights and support...",
+fields: ["recipientName", "careerField"],
+template: (d) => `Dear ${d.recipientName},
+
+Navigating Your ${d.careerField} Career Path 🎯
+
+At Droom Dazlean Solutions, we work with countless professionals and students pursuing careers in technology and related fields. We wanted to share some insights that could benefit your professional journey.
+
+Key Career Success Factors:
+1. **Continuous Learning** - Technology evolves rapidly; staying current is essential
+2. **Practical Experience** - Hands-on projects matter more than just theoretical knowledge
+3. **Professional Network** - Relationships open doors that credentials alone cannot
+4. **Problem-Solving Skills** - Employers value those who can tackle real challenges
+5. **Communication Ability** - Technical skills plus clear communication equals career advancement
+
+How We Can Support Your Growth:
+• Portfolio project development
+• Skills enhancement training
+• Professional documentation assistance
+• Technical mentorship
+• Industry connections
+
+Whether you're starting out, transitioning, or advancing, the right support accelerates progress. Droom Dazlean Solutions has helped countless individuals enhance their capabilities and achieve their career objectives.
+
+Your potential is unlimited - sometimes you just need the right resources and guidance to unlock it.
+
+Let's discuss how we can support your professional development!
+
+Investing in your future,
+Droom Dazlean Solutions
+📞 +263 78 770 2386 / +263 719 172 868
+🌐 www.droomdazlean.com`
+}
+];
+
+const fieldLabels = {
+clientName: "Client/Organization Name",
+studentName: "Student Name",
+recipientName: "Recipient Name",
+projectName: "Project Name",
+completionDate: "Completion Date",
+serviceType: "Service Type",
+degree: "Degree/Qualification",
+institution: "Institution Name",
+documentCount: "Number of Documents",
+amount: "Amount ($)",
+dueDate: "Due Date",
+recipientType: "Recipient Type (students/organizations)",
+consultationArea: "Consultation Area",
+newDeadline: "New Deadline",
+reason: "Reason for Extension",
+holiday: "Holiday Name",
+milestone: "Milestone Description",
+projectCount: "Number of Projects",
+discount: "Discount Percentage",
+deadline: "Payment Deadline",
+newService: "New Service Name",
+systemName: "System/Project Name",
+organizationName: "Organization Name",
+contactPerson: "Contact Person Name",
+trainingTopic: "Training Topic",
+achievement: "Achievement Description",
+semester: "Semester (e.g., Fall 2025)",
+researchArea: "Research Area",
+urgentNeed: "Urgent Need Description",
+years: "Number of Years",
+productName: "Product Name",
+productDescription: "Product Description",
+eventName: "Event Name",
+eventDate: "Event Date",
+eventLocation: "Event Location",
+serviceName: "Service Name",
+renewalDate: "Renewal Date",
+discountPercentage: "Discount Percentage",
+validUntil: "Valid Until Date",
+serviceCategory: "Service Category",
+careerField: "Career Field"
+};
+
+let filteredMsgs = messages;
+let currentMsg = null;
+
+function renderMessages() {
+const list = document.getElementById('messageList');
+list.innerHTML = filteredMsgs.map((msg, idx) => `
+<div class="message-item" onclick="selectMessage(${messages.indexOf(msg)})">
+<div class="message-title"><i class="bi bi-chat-dots"></i> ${msg.title}</div>
+<div class="message-preview"><strong>${msg.category}:</strong> ${msg.preview}</div>
+</div>
+`).join('');
+}
+
+function filterMessages() {
+const search = document.getElementById('searchInput').value.toLowerCase();
+const cat = document.getElementById('categoryFilter').value;
+filteredMsgs = messages.filter(m => {
+const matchSearch = m.title.toLowerCase().includes(search) || 
+m.preview.toLowerCase().includes(search) || 
+m.category.toLowerCase().includes(search);
+const matchCat = !cat || m.category === cat;
+return matchSearch && matchCat;
+});
+renderMessages();
+}
+
+function selectMessage(idx) {
+currentMsg = messages[idx];
+document.getElementById('modalTitle').textContent = currentMsg.title;
+const form = document.getElementById('formFields');
+form.innerHTML = currentMsg.fields.map(f => `
+<div class="form-group">
+<label>${fieldLabels[f] || f}:</label>
+<input type="text" id="field_${f}" oninput="updatePreview()">
+</div>
+`).join('');
+document.getElementById('messagePreview').textContent = '';
+document.getElementById('successMsg').style.display = 'none';
+document.getElementById('customizeModal').style.display = 'block';
+}
+
+function updatePreview() {
+if (!currentMsg) return;
+const data = {};
+currentMsg.fields.forEach(f => {
+data[f] = document.getElementById(`field_${f}`).value || `[${fieldLabels[f] || f}]`;
+});
+document.getElementById('messagePreview').textContent = currentMsg.template(data);
+}
+
+function copyToClipboard() {
+const data = {};
+let allFilled = true;
+currentMsg.fields.forEach(f => {
+const val = document.getElementById(`field_${f}`).value.trim();
+if (!val) allFilled = false;
+data[f] = val;
+});
+if (!allFilled) {
+alert('Please fill in all fields before copying!');
+return;
+}
+const txt = currentMsg.template(data);
+navigator.clipboard.writeText(txt).then(() => {
+document.getElementById('successMsg').style.display = 'block';
+setTimeout(() => {
+document.getElementById('successMsg').style.display = 'none';
+}, 3000);
+});
+}
+
+function closeModal() {
+document.getElementById('customizeModal').style.display = 'none';
+currentMsg = null;
+}
+
+document.getElementById('searchInput').addEventListener('input', filterMessages);
+document.getElementById('categoryFilter').addEventListener('change', filterMessages);
+window.onclick = e => {
+if (e.target.id === 'customizeModal') closeModal();
+};
+
+renderMessages();
+</script>
+</body>
+</html>

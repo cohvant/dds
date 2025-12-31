@@ -1,0 +1,72 @@
+
+<!-- Programming Advert 4 - Game Development -->
+<div style="font-family: 'Inter', sans-serif; max-width: 640px; margin: 0 auto; background: linear-gradient(135deg, #7c2d12 0%, #991b1b 50%, #b91c1c 100%); color: white; border-radius: 24px; padding: 3rem; box-shadow: 0 35px 70px rgba(124,45,18,0.6); position: relative; overflow: hidden;">
+    <div style="position: absolute; top: -60px; right: -60px; width: 220px; height: 220px; background: radial-gradient(circle, rgba(234,179,8,0.3), transparent); filter: blur(70px);"></div>
+    
+    <div style="text-align: center; margin-bottom: 2.75rem; position: relative; z-index: 1;">
+        <div style="font-size: 4rem; margin-bottom: 1rem;">🎮</div>
+        <h1 style="font-size: 2.6rem; font-weight: 900; margin: 0; text-shadow: 0 4px 15px rgba(0,0,0,0.4);">
+            GAME DEVELOPMENT
+        </h1>
+        <p style="font-size: 1.3rem; margin: 1rem 0 0 0; font-weight: 600; opacity: 0.95;">Create Amazing Gaming Experiences</p>
+    </div>
+    
+    <div style="background: rgba(255,255,255,0.08); backdrop-filter: blur(25px); border-radius: 22px; padding: 2.75rem; border: 1px solid rgba(255,255,255,0.15); position: relative; z-index: 1;">
+        <div style="text-align: center; margin-bottom: 2.5rem;">
+            <div style="width: 90px; height: 90px; background: linear-gradient(135deg, #fbbf24, #f59e0b); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; box-shadow: 0 15px 40px rgba(251,191,36,0.4); font-size: 2.75rem;">
+                👨‍💻
+            </div>
+            <h2 style="font-size: 2rem; margin: 0; font-weight: 800; color: #fbbf24;">{employeeName}</h2>
+            <p style="font-size: 1.05rem; margin: 0.75rem 0 0 0; opacity: 0.95;">Senior Game Developer & Instructor</p>
+        </div>
+        
+        <div style="margin: 2.5rem 0;">
+            <div style="background: rgba(251,191,36,0.15); padding: 2rem; border-radius: 16px; margin-bottom: 1.5rem; border: 2px solid rgba(251,191,36,0.3);">
+                <div style="display: flex; align-items: center; gap: 1.5rem;">
+                    <span style="font-size: 3rem; flex-shrink: 0;">🎯</span>
+                    <div>
+                        <h4 style="color: #fbbf24; margin: 0 0 0.75rem 0; font-size: 1.4rem; font-weight: 800;">Unity Game Engine</h4>
+                        <p style="margin: 0; font-size: 1.05rem; line-height: 1.6;">2D & 3D Games • C# Programming • Physics • Animation</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: rgba(139,92,246,0.15); padding: 2rem; border-radius: 16px; margin-bottom: 1.5rem; border: 2px solid rgba(139,92,246,0.3);">
+                <div style="display: flex; align-items: center; gap: 1.5rem;">
+                    <span style="font-size: 3rem; flex-shrink: 0;">🔥</span>
+                    <div>
+                        <h4 style="color: #a78bfa; margin: 0 0 0.75rem 0; font-size: 1.4rem; font-weight: 800;">Unreal Engine</h4>
+                        <p style="margin: 0; font-size: 1.05rem; line-height: 1.6;">AAA Graphics • Blueprints • C++ • VR/AR Development</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: rgba(52,211,153,0.15); padding: 2rem; border-radius: 16px; border: 2px solid rgba(52,211,153,0.3);">
+                <div style="display: flex; align-items: center; gap: 1.5rem;">
+                    <span style="font-size: 3rem; flex-shrink: 0;">🕹️</span>
+                    <div>
+                        <h4 style="color: #34d399; margin: 0 0 0.75rem 0; font-size: 1.4rem; font-weight: 800;">Game Design & Publishing</h4>
+                        <p style="margin: 0; font-size: 1.05rem; line-height: 1.6;">Gameplay Mechanics • Level Design • Steam & Mobile Stores</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, #dc2626, #991b1b); padding: 2rem; border-radius: 16px; text-align: center;">
+            <p style="font-size: 1.3rem; margin: 0; font-weight: 800; line-height: 1.5;">
+                🏆 Build Your Portfolio • Launch Your Game • Start Your Career
+            </p>
+        </div>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.75rem; position: relative; z-index: 1;">
+        <div style="background: rgba(255,255,255,0.12); padding: 1.5rem; border-radius: 14px; text-align: center;">
+            <p style="margin: 0; font-size: 0.9rem; opacity: 0.85; margin-bottom: 0.5rem;">Contact</p>
+            <p style="margin: 0; font-weight: 800; font-size: 1.05rem;">📧 {employeeEmail}</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.12); padding: 1.5rem; border-radius: 14px; text-align: center;">
+            <p style="margin: 0; font-size: 0.9rem; opacity: 0.85; margin-bottom: 0.5rem;">Date</p>
+            <p style="margin: 0; font-weight: 800; font-size: 1.05rem;">📅 {dateHere}</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+
+<!-- Dissertation Advert 1 - PhD Specialist -->
+<div style="font-family: 'Inter', sans-serif; max-width: 600px; margin: 0 auto; background: linear-gradient(135deg, #581c87 0%, #7e22ce 50%, #9333ea 100%); color: white; border-radius: 24px; padding: 3rem; box-shadow: 0 30px 70px rgba(88,28,135,0.5); position: relative; overflow: hidden;">
+    <div style="position: absolute; top: -80px; right: -80px; width: 250px; height: 250px; background: radial-gradient(circle, rgba(236,72,153,0.3), transparent); filter: blur(60px);"></div>
+    
+    <div style="text-align: center; margin-bottom: 2.5rem; position: relative; z-index: 1;">
+        <div style="width: 90px; height: 90px; background: linear-gradient(135deg, #fbbf24, #f59e0b); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; box-shadow: 0 15px 40px rgba(251,191,36,0.4); font-size: 3rem;">
+            🎓
+        </div>
+        <h1 style="font-size: 2.5rem; font-weight: 900; margin: 0; text-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+            PhD DISSERTATION MASTERY
+        </h1>
+        <p style="font-size: 1.3rem; opacity: 0.95; margin-top: 1rem; font-weight: 600;">Research Excellence • Academic Publishing</p>
+    </div>
+    
+    <div style="background: rgba(255,255,255,0.08); backdrop-filter: blur(20px); border-radius: 20px; padding: 2.5rem; border: 1px solid rgba(255,255,255,0.15); position: relative; z-index: 1;">
+        <div style="text-align: center; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 2px solid rgba(255,255,255,0.15);">
+            <h2 style="font-size: 2rem; margin: 0; color: #fbbf24; font-weight: 800;">Dr. {employeeName}</h2>
+            <p style="font-size: 1.05rem; margin: 0.75rem 0 0 0; opacity: 0.95;">Senior Research Consultant • Published Academic</p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0;">
+            <div style="background: rgba(251,191,36,0.15); padding: 1.75rem; border-radius: 14px; text-align: center; border: 2px solid rgba(251,191,36,0.3);">
+                <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">📚</div>
+                <h4 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.15rem; font-weight: 700;">Literature Review</h4>
+                <p style="margin: 0; font-size: 0.95rem; line-height: 1.5;">Comprehensive analysis</p>
+            </div>
+            
+            <div style="background: rgba(251,191,36,0.15); padding: 1.75rem; border-radius: 14px; text-align: center; border: 2px solid rgba(251,191,36,0.3);">
+                <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">🔬</div>
+                <h4 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.15rem; font-weight: 700;">Methodology</h4>
+                <p style="margin: 0; font-size: 0.95rem; line-height: 1.5;">Rigorous research design</p>
+            </div>
+            
+            <div style="background: rgba(251,191,36,0.15); padding: 1.75rem; border-radius: 14px; text-align: center; border: 2px solid rgba(251,191,36,0.3);">
+                <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">📊</div>
+                <h4 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.15rem; font-weight: 700;">Data Analysis</h4>
+                <p style="margin: 0; font-size: 0.95rem; line-height: 1.5;">SPSS, R, Python</p>
+            </div>
+            
+            <div style="background: rgba(251,191,36,0.15); padding: 1.75rem; border-radius: 14px; text-align: center; border: 2px solid rgba(251,191,36,0.3);">
+                <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">✍️</div>
+                <h4 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.15rem; font-weight: 700;">Writing & Editing</h4>
+                <p style="margin: 0; font-size: 0.95rem; line-height: 1.5;">Academic standard</p>
+            </div>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, #ec4899, #be185d); padding: 2rem; border-radius: 16px; text-align: center; margin-top: 2rem;">
+            <p style="font-size: 1.2rem; margin: 0 0 0.75rem 0; font-weight: 700;">🏆 SPECIALIZATIONS</p>
+            <p style="font-size: 1.05rem; margin: 0; line-height: 1.6;">
+                Business • Social Sciences • Education • Health Sciences • Engineering
+            </p>
+        </div>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 2.5rem; position: relative; z-index: 1;">
+        <div style="background: rgba(255,255,255,0.12); padding: 1.5rem; border-radius: 14px; text-align: center;">
+            <p style="margin: 0; font-size: 0.9rem; opacity: 0.85; margin-bottom: 0.5rem;">Contact</p>
+            <p style="margin: 0; font-weight: 700; font-size: 1.05rem;">📧 {employeePhoneNumber}</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.12); padding: 1.5rem; border-radius: 14px; text-align: center;">
+            <p style="margin: 0; font-size: 0.9rem; opacity: 0.85; margin-bottom: 0.5rem;">Date</p>
+            <p style="margin: 0; font-weight: 700; font-size: 1.05rem;">📅 {dateHere}</p>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 2rem; position: relative; z-index: 1;">
+        <p style="font-size: 1.15rem; font-weight: 700; margin: 0;">✨ FREE Consultation • Confidential Service • On-Time Delivery</p>
+    </div>
+</div>
+

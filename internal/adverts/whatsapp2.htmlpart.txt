@@ -1,0 +1,44 @@
+
+<!-- WhatsApp Advert 2 - Assignment Help -->
+<div style="font-family: 'Segoe UI', sans-serif; max-width: 400px; margin: 0 auto; background: #0a4d3c; color: white; border-radius: 20px; padding: 1.75rem; box-shadow: 0 25px 50px rgba(10,77,60,0.5); position: relative; overflow: hidden;">
+    <div style="position: absolute; top: -30px; right: -30px; width: 150px; height: 150px; background: rgba(37,211,102,0.2); border-radius: 50%; filter: blur(40px);"></div>
+    
+    <div style="display: flex; align-items: center; gap: 1rem; background: rgba(37,211,102,0.2); padding: 1.25rem; border-radius: 15px; margin-bottom: 1.5rem; position: relative; z-index: 1;">
+        <div style="font-size: 2.5rem; flex-shrink: 0;">📚</div>
+        <div>
+            <h2 style="margin: 0; font-size: 1.4rem; font-weight: 700;">{employeeName}</h2>
+            <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; opacity: 0.9;">Assignment Solutions Pro</p>
+        </div>
+    </div>
+    
+    <div style="background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); padding: 1.5rem; border-radius: 16px; margin-bottom: 1.5rem; position: relative; z-index: 1;">
+        <h3 style="font-size: 1.35rem; text-align: center; margin-bottom: 1.25rem; font-weight: 700; color: #25d366;">🎯 ASSIGNMENT HELP</h3>
+        
+        <div style="background: rgba(37,211,102,0.15); padding: 1.25rem; border-radius: 12px; margin-bottom: 1rem; border-left: 4px solid #25d366;">
+            <p style="margin: 0; font-size: 1.05rem; line-height: 1.6;">
+                <strong>📖 All Subjects:</strong> Math, Science, Business, Programming, Essays & More
+            </p>
+        </div>
+        
+        <div style="background: rgba(37,211,102,0.15); padding: 1.25rem; border-radius: 12px; margin-bottom: 1rem; border-left: 4px solid #25d366;">
+            <p style="margin: 0; font-size: 1.05rem; line-height: 1.6;">
+                <strong>⏰ 24/7 Support:</strong> Urgent? We handle last-minute assignments
+            </p>
+        </div>
+        
+        <div style="background: rgba(37,211,102,0.15); padding: 1.25rem; border-radius: 12px; border-left: 4px solid #25d366;">
+            <p style="margin: 0; font-size: 1.05rem; line-height: 1.6;">
+                <strong>💯 Quality Work:</strong> A+ grades or money back
+            </p>
+        </div>
+    </div>
+    
+    <div style="background: linear-gradient(135deg, #25d366, #128c7e); padding: 1.5rem; border-radius: 15px; text-align: center; margin-bottom: 1.5rem; position: relative; z-index: 1;">
+        <p style="margin: 0; font-size: 1.15rem; font-weight: 700;">🔥 50+ Happy Students This Month!</p>
+    </div>
+    
+    <div style="text-align: center; position: relative; z-index: 1;">
+        <p style="margin: 0 0 0.75rem 0; font-size: 1.05rem; font-weight: 600;">📧 {employeeEmail}</p>
+        <p style="margin: 0; font-size: 0.85rem; opacity: 0.85;">{dateHere}</p>
+    </div>
+</div>

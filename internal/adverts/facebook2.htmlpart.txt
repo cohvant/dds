@@ -1,0 +1,56 @@
+
+<!-- Facebook Advert 1 - Professional Services -->
+<div style="font-family: 'Segoe UI', sans-serif; max-width: 550px; margin: 0 auto; background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%); color: white; border-radius: 22px; padding: 2.5rem; box-shadow: 0 30px 60px rgba(30,64,175,0.5);">
+    <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem;">
+        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #fbbf24, #f59e0b); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; box-shadow: 0 10px 30px rgba(251,191,36,0.4); flex-shrink: 0;">
+            👨‍🎓
+        </div>
+        <div>
+            <h2 style="font-size: 1.8rem; font-weight: 800; margin: 0;">{employeeName}</h2>
+            <p style="font-size: 1rem; margin: 0.5rem 0 0 0; opacity: 0.95;">Premium Academic Services</p>
+        </div>
+    </div>
+    
+    <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(20px); border-radius: 18px; padding: 2.25rem; margin-bottom: 2rem;">
+        <h3 style="font-size: 1.6rem; text-align: center; margin-bottom: 2rem; font-weight: 800; color: #fbbf24;">🎯 COMPLETE ACADEMIC SUPPORT</h3>
+        
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 2rem;">
+            <div style="text-align: center; padding: 1.5rem; background: rgba(251,191,36,0.15); border-radius: 14px; border: 2px solid rgba(251,191,36,0.3);">
+                <div style="font-size: 2.25rem; margin-bottom: 0.75rem;">📚</div>
+                <p style="margin: 0; font-weight: 700; font-size: 1rem;">Dissertations</p>
+            </div>
+            <div style="text-align: center; padding: 1.5rem; background: rgba(52,211,153,0.15); border-radius: 14px; border: 2px solid rgba(52,211,153,0.3);">
+                <div style="font-size: 2.25rem; margin-bottom: 0.75rem;">✍️</div>
+                <p style="margin: 0; font-weight: 700; font-size: 1rem;">Essays</p>
+            </div>
+            <div style="text-align: center; padding: 1.5rem; background: rgba(96,165,250,0.15); border-radius: 14px; border: 2px solid rgba(96,165,250,0.3);">
+                <div style="font-size: 2.25rem; margin-bottom: 0.75rem;">🔬</div>
+                <p style="margin: 0; font-weight: 700; font-size: 1rem;">Research</p>
+            </div>
+        </div>
+        
+        <div style="background: rgba(255,255,255,0.08); padding: 1.75rem; border-radius: 14px; margin-bottom: 1.75rem;">
+            <p style="font-size: 1.1rem; margin: 0 0 1.25rem 0; font-weight: 700; text-align: center; color: #fbbf24;">✨ Why Choose Us?</p>
+            <ul style="font-size: 1rem; line-height: 2; padding-left: 1.5rem; margin: 0;">
+                <li><strong>Expert Writers:</strong> PhD-qualified academics</li>
+                <li><strong>Quality Guarantee:</strong> First-class standards</li>
+                <li><strong>Confidential:</strong> 100% privacy protected</li>
+                <li><strong>Support:</strong> 24/7 customer service</li>
+            </ul>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, #10b981, #059669); padding: 1.75rem; border-radius: 14px; text-align: center;">
+            <p style="font-size: 1.2rem; margin: 0; font-weight: 700;">🚀 500+ Students Helped • A+ Results Guaranteed</p>
+        </div>
+    </div>
+    
+    <div style="background: rgba(255,255,255,0.12); padding: 1.5rem; border-radius: 16px; text-align: center;">
+        <p style="margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 700;">📧 {employeePhoneNumber}</p>
+        <p style="margin: 0; font-size: 0.9rem; opacity: 0.9;">{dateHere}</p>
+    </div>
+    
+    <div style="text-align: center; margin-top: 1.5rem;">
+        <p style="font-size: 1.05rem; font-weight: 700; margin: 0;">💬 DM Now for FREE Consultation!</p>
+    </div>
+</div>
+
